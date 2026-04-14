@@ -28,7 +28,7 @@ Some prompts to answer:
 - How do you choose which songs to recommend
 
 You can include a simple diagram or bullet list if helpful.
-
+Each song has a genre, mood, energy, and tempo. The user picks their preferences for those same things. The recommender scores every song by how well it matches those preferences, then returns the top results.
 ---
 
 ## Getting Started
@@ -73,6 +73,8 @@ Use this section to document the experiments you ran. For example:
 - What happened when you changed the weight on genre from 2.0 to 0.5
 - What happened when you added tempo or valence to the score
 - How did your system behave for different types of users
+Experiments You Tried
+Lowering the genre weight from 2.0 to 0.5 made the results more diverse but sometimes returned songs that felt mismatched. Adding tempo as a scored feature helped separate high-energy tracks from slower ones even within the same genre. Testing with a "calm" user profile versus an "energetic" one produced noticeably different results. The calm profile surfaced low-energy, slow-tempo songs while the energetic profile returned fast, intense tracks.
 
 ---
 
@@ -87,7 +89,9 @@ Examples:
 - It might over favor one genre or mood
 
 You will go deeper on this in your model card.
-
+Only works on a small catalog so recommendations repeat quickly
+Can over-favor one genre or mood if weights are off
+Does not learn from skips or replays
 ---
 
 ## Reflection
