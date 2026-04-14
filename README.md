@@ -72,8 +72,8 @@ Use this section to document the experiments you ran. For example:
 
 - What happened when you changed the weight on genre from 2.0 to 0.5
 - What happened when you added tempo or valence to the score
-- How did your system behave for different types of users
-Experiments You Tried
+- How did your system behave for different types of users experiments you tried
+  
 Lowering the genre weight from 2.0 to 0.5 made the results more diverse but sometimes returned songs that felt mismatched. Adding tempo as a scored feature helped separate high-energy tracks from slower ones even within the same genre. Testing with a "calm" user profile versus an "energetic" one produced noticeably different results. The calm profile surfaced low-energy, slow-tempo songs while the energetic profile returned fast, intense tracks.
 
 ---
