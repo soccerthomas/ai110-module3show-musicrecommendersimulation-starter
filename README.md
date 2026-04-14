@@ -119,7 +119,7 @@ Combines reflection and model card framing from the Module 3 guidance. :contentR
 
 Give your recommender a name, for example:
 
-> VibeFinder 1.0
+> AudioGI
 
 ---
 
@@ -127,7 +127,7 @@ Give your recommender a name, for example:
 
 - What is this system trying to do
 - Who is it for
-
+This recommender suggests songs from a small catalog based on a user's preferred genre, mood, energy, and tempo. It assumes the user can describe their taste upfront and that those preferences stay consistent. This is a classroom exploration project, not a production system.
 Example:
 
 > This model suggests 3 to 5 songs from a small catalog based on a user's preferred genre, mood, and energy level. It is for classroom exploration only, not for real users.
@@ -143,7 +143,7 @@ Describe your scoring logic in plain language.
 - How does it turn those into a number
 
 Try to avoid code in this section, treat it like an explanation to a non programmer.
-
+Each song has four attributes: genre, mood, energy, and tempo. The user provides their ideal values for each. Genre and mood get a fixed bonus for a match, while energy and tempo are scored by how close the numbers are. Songs that match on more things score higher and get recommended first
 ---
 
 ## 4. Data
@@ -154,7 +154,7 @@ Describe your dataset.
 - Did you add or remove any songs
 - What kinds of genres or moods are represented
 - Whose taste does this data mostly reflect
-
+The catalog contains a small set of songs from songs.csv covering a handful of genres like Hip-Hop, Pop, and Rock, with moods like Energetic, Chill, and Happy. No songs were added or removed. The dataset is limited and likely reflects mainstream Western music taste, leaving out a lot of genres and cultural variety.
 ---
 
 ## 5. Strengths
@@ -167,6 +167,7 @@ You can think about:
 - Simplicity or transparency benefits
 
 ---
+Works well for users with clear, consistent preferences. The scoring is transparent and easy to reason about. Simple user profiles with strong genre or mood preferences tend to produce intuitive recommendations.
 
 ## 6. Limitations and Bias
 
@@ -177,7 +178,7 @@ Some prompts:
 - Does it treat all users as if they have the same taste shape
 - Is it biased toward high energy or one genre by default
 - How could this be unfair if used in a real product
-
+The catalog is tiny so results repeat quickly. The system ignores lyrics, artist style, tempo feel, and cultural context. It treats all users as having one fixed taste profile, so it can't handle moods that shift. High genre weights can drown out energy and tempo signals, and underrepresented genres in the dataset will rarely surface regardless of user preference.
 ---
 
 ## 7. Evaluation
@@ -190,7 +191,7 @@ Examples:
 - You wrote tests for your scoring logic
 
 You do not need a numeric metric, but if you used one, explain what it measures.
-
+The calm profile consistently returned low-energy slow songs while the energetic profile returned fast tracks, which matched expectations. Adjusting genre weight from 2.0 to 0.5 noticeably changed result diversity.
 ---
 
 ## 8. Future Work
@@ -202,7 +203,8 @@ Examples:
 - Add support for multiple users and "group vibe" recommendations
 - Balance diversity of songs instead of always picking the closest match
 - Use more features, like tempo ranges or lyric themes
-
+Add a feedback loop so the system learns from skips and replays
+Support tempo ranges instead of a single target value
 ---
 
 ## 9. Personal Reflection
@@ -212,4 +214,5 @@ A few sentences about what you learned:
 - What surprised you about how your system behaved
 - How did building this change how you think about real music recommenders
 - Where do you think human judgment still matters, even if the model seems "smart"
+The most interesting thing was realizing how easy it is for bias to sneak in through the data itself. If certain genres are underrepresented in the catalog, the system will never recommend them no matter how well they'd match a user's actual taste. Building this showed me how recommenders reduce something as personal as music taste down to a few numbers.
 
